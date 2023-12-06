@@ -1,0 +1,36 @@
+/* Home.css */
+.home-container {
+    text-align: center;
+  }
+  
+  .header {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px;
+  }
+  
+  .anime-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+  }
+  
+  .anime-card {
+    margin-right: 20px;
+    text-align: center;
+    flex: 0 0 auto; /* Ensure each card has a fixed size */
+  }
+  
+  .anime-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .anime-card p {
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
