@@ -1,0 +1,29 @@
+/* Details.css */
+.details-container {
+    padding: 20px;
+}
+
+.additional-details {
+    margin-top: 20px;
+}
+
+.characters-section {
+    margin-top: 20px;
+}
+
+.characters-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Adjusted to bring characters even closer */
+}
+
+.characters-list li {
+    text-align: center;
+}
+
+/* Use the same styling for images as in the account.css file */
+.characters-list img {
+    width: 50px; /* Adjust as needed */
+    margin-right: 10px;
+}
