@@ -1,5 +1,17 @@
 /* account.css */
 
+.account-container {
+    display: flex;
+}
+
+.profile-section,
+.liked-anime-section,
+.user-reviews-section,
+.following-section,
+.followers-section {
+    margin-right: 20px;
+}
+
 .w-50 {
     max-width: 500px;
     margin: 0 auto;
@@ -58,4 +70,10 @@ img {
     width: 100%; /* Adjust as needed */
     height: auto;
     margin-right: 10px;
+}
+
+/* Following and Followers section */
+.following-section h2,
+.followers-section h2 {
+    margin-top: 0;
 }

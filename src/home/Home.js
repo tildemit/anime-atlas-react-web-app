@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
@@ -20,6 +21,12 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      <div className="top-bar">
+        <Link to="/profile" className="nav-link">Account</Link>
+        <Link to="/search" className="nav-link">Search</Link>
+        <Link to="/signin" className="nav-link">Sign In</Link>
+      </div>
+
       <div className="header">
         <h1>Welcome to AnimeAtlas!</h1>
         <p>Discover and explore anime here.</p>

@@ -34,39 +34,58 @@ export const account = async () => {
     const response = await jikanRequest.get(`https://api.jikan.moe/v4/anime/${animeId}`);
     return response.data;
   };
+
+  export const getCharacterDetails = async (characterId) => {
+    const response = await jikanRequest.get(`https://api.jikan.moe/v4/characters/${characterId}`);
+    return response.data;
+  };
   
   export const findUserById = async (id) => {
     const response = await request.get(`${USERS_API}/${id}`);
     return response.data;
   };
 
-  export const follow = async (userId) => {
-    const response = await request.post(`${USERS_API}/follow/${userId}`);
+  export const likeAnime = async (animeId, userId) => {
+    const response = await request.post(`${USERS_API}/${userId}/liked-anime/${animeId}`);
     return response.data;
   };
 
-  export const unfollow = async (userId) => {
-    const response = await request.delete(`${USERS_API}/unfollow/${userId}`);
+  export const unlikeAnime = async (animeId, userId) => {
+    const response = await request.delete(`${USERS_API}/${userId}/liked-anime/${animeId}`);
+    return response.data;
+  };
+
+  export const likeCharacter = async (characterId, userId) => {
+    const response = await request.post(`${USERS_API}/${userId}/liked-characters/${characterId}`);
+    return response.data;
+  };
+
+  export const unlikeCharacter = async (characterId, userId) => {
+    const response = await request.delete(`${USERS_API}/${userId}/liked-characters/${characterId}`);
     return response.data;
   };
   
-  export const getAnime = async (animeId) => {
-    const response = await request.get(`${BASE_API}/api/anime/${animeId}`);
+  export const addAnime = async (anime) => {
+    const response = await request.post(`${BASE_API}/api/anime`, anime);
     return response.data;
   };
 
-  export const getCharacter = async (characterId) => {
-    const response = await request.get(`${BASE_API}/api/characters/${characterId}`);
+  export const addCharacter = async (character) => {
+    const response = await request.post(`${BASE_API}/api/characters`, character);
+    return response.data;
+  };
+
+  export const getReviews = async (animeId) => {
+    const response = await request.get(`${BASE_API}/api/anime-reviews/${animeId}`);
     return response.data;
   };
 
   export const signout = async () => {
     const response = await request.post(`${USERS_API}/signout`);
-    return response.data; };
+    return response.data; 
+  };
 
-    export const signup = async (credentials) => {
-      const response = await request.post(
-        `${USERS_API}/signup`, credentials);
-      return response.data;
-    };
-    
+  export const postReview = async (review) => {
+    const response = await request.post(`${USERS_API}/reviews`, review)
+    return response.data;
+  };
