@@ -103,7 +103,7 @@ function Account() {
   const handleSignout = async () => {
     try {
       await client.signout();
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -131,7 +131,7 @@ function Account() {
       {!account ? (
         <div>
           <p>Please sign in to view your account.</p>
-          <Link to="/signin">Sign In</Link>
+          <Link to="/login">Sign In</Link>
         </div>
       ) : (
         <div className="account-details">

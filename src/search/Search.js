@@ -65,7 +65,7 @@ const Search = () => {
     try {
       await client.signout();
 
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -81,7 +81,7 @@ const Search = () => {
           Profile
         </Link>
         <Link
-          to={userAccount ? "/signin" : "/signin"}
+          to={userAccount ? "/login" : "/login"}
           className="nav-link"
           onClick={userAccount ? handleSignout : null}
         >

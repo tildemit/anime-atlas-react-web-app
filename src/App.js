@@ -20,8 +20,8 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/search/:query?" element={<Search/>}/>
           <Route path="/details/:animeId" element={<Details />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Signin />} />
+          <Route path="/register" element={<Signup />} />
           <Route path="/profile" element={<Account />} />
           <Route path="/profile/:userId" element={<PublicUser />} />
           <Route path="/users" element={<UserTable />} />

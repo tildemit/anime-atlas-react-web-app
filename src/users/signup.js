@@ -37,7 +37,7 @@ function Signup() {
         <Link to="/search" className="nav-link">
           Search
         </Link>
-        <Link to="/signin" className="nav-link">
+        <Link to="/login" className="nav-link">
           Signin
         </Link>
       </div>

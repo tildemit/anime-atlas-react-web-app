@@ -65,7 +65,7 @@ const CharacterDetails = () => {
     try {
       await client.signout();
 
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -98,7 +98,7 @@ const CharacterDetails = () => {
           Search
         </Link>
         <Link
-          to={user ? "/signin" : "/signin"}
+          to={user ? "/login" : "/login"}
           className="nav-link"
           onClick={user ? handleSignout : null}
         >

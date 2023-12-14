@@ -109,7 +109,7 @@ const Details = () => {
     try {
       await client.signout();
 
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }

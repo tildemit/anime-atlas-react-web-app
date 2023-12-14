@@ -70,7 +70,7 @@ const Home = () => {
     try {
       await client.signout();
       setUserAccount(null);
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -79,7 +79,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="top-bar">
-        <Link to="/signup" className="nav-link">
+        <Link to="/register" className="nav-link">
           Signup
         </Link>
         <Link to="/profile" className="nav-link">
