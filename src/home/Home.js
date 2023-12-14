@@ -8,6 +8,7 @@ const Home = () => {
   const [likedAnime, setLikedAnime] = useState([]);
   const [followingReviews, setFollowingReviews] = useState([]);
   const [userAccount, setUserAccount] = useState(null);
+  const [recentlyLikedAnime, setRecentlyLikedAnime] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +18,8 @@ const Home = () => {
         setUserAccount(account);
 
         if (!account) {
+          const recentlyLikedAnimeData = await client.getAnimes();
+          setRecentlyLikedAnime(recentlyLikedAnimeData.reverse().slice(0, 10));
           const reviewData = await client.getReviews();
           const reviewsWithAnimeData = await Promise.all(
             reviewData.map(async (review) => {
@@ -64,7 +67,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, []);
+  }, [recentlyLikedAnime]);
 
   const handleSignout = async () => {
     try {
@@ -120,7 +123,24 @@ const Home = () => {
         </div>
       )}
 
-      {}
+{!userAccount && (
+        <div className="liked-anime-scroll">
+          <h2>Recently Liked Anime</h2>
+          <div className="liked-anime-cards">
+            {recentlyLikedAnime.map((anime, index) => (
+              <div key={index} className="liked-anime-card">
+                <Link to={`/details/${anime.id}`}>
+                  <img
+                    src={anime.imageUrl}
+                    alt={`Recently Liked Anime ${index + 1}`}
+                    style={{ width: "150px", marginRight: "10px" }}
+                  />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {followingReviews.length > 0 && (
         <div className="liked-anime-scroll">
           <h2>

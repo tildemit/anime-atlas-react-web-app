@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const Details = () => {
   const { animeId } = useParams();
-  const [loading, setLoading] = useState(true);
   const [animeDetails, setAnimeDetails] = useState(null);
   const [characters, setCharacters] = useState([]);
   const [videos, setVideos] = useState([]);
@@ -49,7 +48,6 @@ const Details = () => {
         if (userAccount?.likedAnime?.includes(animeId)) {
           setIsLiked(true);
         }
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching anime details:", error);
       }
@@ -128,7 +126,7 @@ const Details = () => {
     }
   };
 
-  if (loading) {
+  if (!animeDetails) {
     return <div>Loading...</div>;
   }
 
@@ -261,12 +259,6 @@ const Details = () => {
           <h2>Video</h2>
           <ul className="characters-list">
             {videos
-              .filter(
-                (video) =>
-                  video.title.toLowerCase().includes("trailer") ||
-                  video.title.toLowerCase().includes("pv")
-              )
-              .reverse()
               .slice(0, 1)
               .map((video) => (
                 <li key={video.title}>
@@ -283,6 +275,8 @@ const Details = () => {
           </ul>
         </div>
       )}
+      
+
 
       {}
     </div>
