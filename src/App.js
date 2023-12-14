@@ -9,7 +9,7 @@ import UserTable from './users/table';
 import PublicUser from './users/publicuser';
 import Signup from './users/signup';
 import CharacterDetails from './details/CharacterDetails';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import {Routes} from "react-router";
 
 function App() {
