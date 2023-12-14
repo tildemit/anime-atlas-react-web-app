@@ -127,7 +127,6 @@ function Account() {
 
   return (
     <div className="account-container">
-      {}
       {!account ? (
         <div>
           <p>Please sign in to view your account.</p>
@@ -135,7 +134,9 @@ function Account() {
         </div>
       ) : (
         <div className="account-details">
-          {}
+          <div>
+      {account ? `User: ${account.username}` : 'Anonymous User'}
+      </div>
           <div className="profile-section">
             <div className="top-bar">
               <Link to="/" className="nav-link">

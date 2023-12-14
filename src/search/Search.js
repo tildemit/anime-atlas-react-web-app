@@ -73,6 +73,9 @@ const Search = () => {
 
   return (
     <div className="home-container">
+      <div>
+      {userAccount ? `User: ${userAccount.username}` : 'Anonymous User'}
+      </div>
       <div className="top-bar">
         <Link to="/" className="nav-link">
           Home

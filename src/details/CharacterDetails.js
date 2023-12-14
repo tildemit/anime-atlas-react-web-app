@@ -87,6 +87,9 @@ const CharacterDetails = () => {
 
   return (
     <div className="character-details-container">
+      <div>
+      {user ? `User: ${user.username}` : 'Anonymous User'}
+      </div>
       <div className="top-bar">
         <Link to="/" className="nav-link">
           Home
@@ -108,16 +111,18 @@ const CharacterDetails = () => {
       <button
         onClick={handleLikeCharacter}
         style={{
-          width: "50px",
-          marginTop: "40px",
           background: "none",
+          right: "10px",
+          marginTop: "80px",
+          fontSize: "35px",
+          cursor: "pointer",
           color: isLiked ? "red" : "white",
         }}
       >
         {isLiked ? "❤️" : "🩶"}
       </button>
 
-      <h1>{characterDetails.name}</h1>
+      <h1 style={{ marginTop: "60px" }}>{characterDetails.name}</h1>
       <img
         src={characterDetails.images.jpg.image_url}
         alt={characterDetails.name}

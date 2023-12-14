@@ -1,17 +1,23 @@
 import * as client from "./client";
 import { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./publicuser.css";
 
 function PublicUser() {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
+  const [account, setAccount] = useState(null);
   const [userReviews, setUserReviews] = useState([]);
   const [animeImages, setAnimeImages] = useState([]);
   const [likedAnimeList, setLikedAnimeList] = useState([]);
+  const navigate = useNavigate();
 
   const fetchPublicUser = useCallback(async () => {
     try {
+      const updatedAccount = await client.account();
+      setAccount(updatedAccount);
+      
       const publicUser = await client.findUserById(userId);
       setUser(publicUser);
 
@@ -36,8 +42,37 @@ function PublicUser() {
     fetchPublicUser();
   }, [fetchPublicUser]);
 
+
+  const handleSignout = async () => {
+    try {
+      await client.signout();
+      setAccount(null);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+
   return (
     <div className="public-user-container">
+      <div>
+      {account ? `User: ${account.username}` : 'Anonymous User'}
+      </div>
+      <div className="top-bar">
+        <Link to="/" className="nav-link">
+          Home
+        </Link>
+        <Link to="/profile" className="nav-link">
+          Profile
+        </Link>
+        <Link to="/search" className="nav-link">
+          Search
+        </Link>
+        <Link onClick={handleSignout} className="nav-link">
+          {account ? "Sign Out" : "Sign In"}
+        </Link>
+      </div>
       <div className="profile-section">
         <h1>Public Profile</h1>
         {user && (

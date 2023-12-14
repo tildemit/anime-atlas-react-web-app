@@ -95,7 +95,10 @@ const Home = () => {
 
       <div className="header">
         <h1>Welcome to AnimeAtlas!</h1>
-        <p>Discover and explore anime here.</p>
+        <p>
+    {userAccount ? `Hello, ${userAccount.username}!` : ''}
+  </p>
+        <p>Explore and discover your new favorite show here, the #1 site for all things anime.</p>
       </div>
 
       {likedAnime.length > 0 && (

@@ -132,6 +132,9 @@ const Details = () => {
 
   return (
     <div className="details-container">
+      <div>
+      {user ? `User: ${user.username}` : 'Anonymous User'}
+      </div>
       <div className="top-bar">
         <Link to="/" className="nav-link">
           Home
@@ -151,7 +154,7 @@ const Details = () => {
         style={{
           background: "none",
           right: "10px",
-          fontSize: "24px",
+          fontSize: "35px",
           cursor: "pointer",
           color: isLiked ? "red" : "white",
         }}

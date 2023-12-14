@@ -68,6 +68,9 @@ function UserTable() {
 
   return (
     <div className="table-container">
+      <div>
+      {currentUser ? `User: ${currentUser.username}` : 'Anonymous User'}
+      </div>
       <div className="top-bar">
         <Link to="/" className="nav-link">Home</Link>
         <Link to="/profile" className="nav-link">
