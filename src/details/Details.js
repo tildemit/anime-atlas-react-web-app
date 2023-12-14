@@ -177,9 +177,11 @@ const Details = () => {
                   {}
                   <p style={{ textAlign: "left" }}>{review.reviewText}</p>
                 </Link>
+                {user?._id === review.userId && (
                 <button onClick={() => handleDeleteReview(review._id)}>
                   Delete
                 </button>
+                )}
               </li>
             ))}
           </ul>
