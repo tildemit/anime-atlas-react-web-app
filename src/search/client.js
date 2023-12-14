@@ -69,7 +69,3 @@ export const account = async () => {
       return response.data;
     };
     
-  export const deleteReview = async (reviewId) => {
-    const response = await request.delete(`${BASE_API}/api/users/reviews/${reviewId}`)
-    return response.data
-  }

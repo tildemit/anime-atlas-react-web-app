@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import * as client from "./client";
-import "./table.css"; // Import the CSS file
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "./table.css"; 
 
 function UserTable() {
   const [users, setUsers] = useState([]);
   const [followingList, setFollowingList] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
 
   const fetchUsers = async () => {
     const fetchedUsers = await client.findAllUsers();
     setUsers(fetchedUsers);
 
-    // Fetch the current user's following list
     const userAccount = await client.account();
     setFollowingList(userAccount.following || []);
     setCurrentUser(userAccount);
@@ -23,17 +25,15 @@ function UserTable() {
 
   const handleFollow = async (userId) => {
     try {
-      // Call the follow function in your client, passing the userId
+
       await client.follow(userId);
 
-      // Update the local state to reflect the change
       const updatedUsers = users.map((user) =>
         user._id === userId ? { ...user, isFollowing: true } : user
       );
 
       setUsers(updatedUsers);
 
-      // Update the following list for the current user
       setFollowingList([...followingList, userId]);
     } catch (error) {
       console.error("Error following user:", error);
@@ -42,25 +42,42 @@ function UserTable() {
 
   const handleUnfollow = async (userId) => {
     try {
-      // Call the unfollow function in your client, passing the userId
+
       await client.unfollow(userId);
 
-      // Update the local state to reflect the change
       const updatedUsers = users.map((user) =>
         user._id === userId ? { ...user, isFollowing: false } : user
       );
 
       setUsers(updatedUsers);
 
-      // Update the following list for the current user
       setFollowingList(followingList.filter((id) => id !== userId));
     } catch (error) {
       console.error("Error unfollowing user:", error);
     }
   };
 
+  const handleSignout = async () => {
+    try {
+      await client.signout();
+      navigate('/signin'); 
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <div className="table-container">
+      <div className="top-bar">
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/profile" className="nav-link">
+          Profile
+        </Link>
+        <Link to="/search" className="nav-link">Search</Link>
+        <Link onClick={handleSignout} className="nav-link">Signout</Link>
+
+      </div>
+
       <h1>User List</h1>
       <table className="table">
         <thead>
@@ -74,23 +91,23 @@ function UserTable() {
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
-              <td>{user.username}</td>
+              <td>
+                <Link to={`/profile/${user._id}`}>{user.username}</Link>
+              </td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td className="actions-cell">
                 {!followingList.includes(user._id) && user._id !== currentUser?._id && (
                   <button
                     className="follow-button"
-                    onClick={() => handleFollow(user._id)}
-                  >
+                    onClick={() => handleFollow(user._id)}>
                     Follow
                   </button>
                 )}
                 {followingList.includes(user._id) && user._id !== currentUser?._id && (
                   <button
                     className="unfollow-button"
-                    onClick={() => handleUnfollow(user._id)}
-                  >
+                    onClick={() => handleUnfollow(user._id)}>
                     Unfollow
                   </button>
                 )}

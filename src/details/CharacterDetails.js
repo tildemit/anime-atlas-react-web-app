@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import * as client from "./client";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import "./CharacterDetails.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CharacterDetails = () => {
   const { characterId } = useParams();
   const [characterDetails, setCharacterDetails] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCharacterDetails = async () => {
@@ -20,8 +25,11 @@ const CharacterDetails = () => {
         if (userAccount?.likedCharacters?.includes(characterId)) {
           setIsLiked(true);
         }
+
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching character details:', error);
+        console.error("Error fetching character details:", error);
+        setLoading(false);
       }
     };
 
@@ -30,9 +38,8 @@ const CharacterDetails = () => {
 
   const handleLikeCharacter = async () => {
     try {
-      if (!user || user.role === 'BASIC') {
-        // If the user is not logged in or has a BASIC role, display a prompt
-        alert('Please sign in or upgrade your account to like characters.');
+      if (!user || user.role === "BASIC") {
+        alert("Please sign in or upgrade your account to like characters.");
         return;
       }
 
@@ -50,43 +57,77 @@ const CharacterDetails = () => {
 
       setIsLiked(newLikeStatus);
     } catch (error) {
-      console.error('Error handling like/unlike character:', error);
+      console.error("Error handling like/unlike character:", error);
     }
   };
 
-  if (!user || user.role === 'BASIC' || !characterDetails) {
-    // Display a prompt to sign in or upgrade
+  const handleSignout = async () => {
+    try {
+      await client.signout();
+
+      navigate("/signin");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user || user.role === "BASIC" || !characterDetails) {
     return (
       <div>
-        <p>Please sign in or upgrade your account to view character details.</p>
-        {/* You can add sign-in and upgrade buttons or links here */}
+        <p>Please upgrade your account to view character details.</p>
+        <Link to="/profile">Profile</Link>
+        {}
       </div>
     );
   }
 
   return (
     <div className="character-details-container">
-      <button onClick={handleLikeCharacter} style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '24px', cursor: 'pointer', color: isLiked ? 'red' : 'white' }}>
-        {isLiked ? '❤️' : '🤍'}
+      <div className="top-bar">
+        <Link to="/" className="nav-link">
+          Home
+        </Link>
+        <Link to="/profile" className="nav-link">
+          Profile
+        </Link>
+        <Link to="/search" className="nav-link">
+          Search
+        </Link>
+        <Link
+          to={user ? "/signin" : "/signin"}
+          className="nav-link"
+          onClick={user ? handleSignout : null}
+        >
+          {user ? "Signout" : "Signin"}
+        </Link>
+      </div>
+      <button
+        onClick={handleLikeCharacter}
+        style={{
+          width: "50px",
+          marginTop: "40px",
+          background: "none",
+          color: isLiked ? "red" : "white",
+        }}
+      >
+        {isLiked ? "❤️" : "🩶"}
       </button>
 
       <h1>{characterDetails.name}</h1>
-      <img src={characterDetails.images.jpg.image_url} alt={characterDetails.name} style={{ width: '300px', marginRight: '10px' }} />
-      
-      <h2>Details</h2>
-      <p><strong>Name Kanji:</strong> {characterDetails.name_kanji}</p>
-      
-      <h2>Nicknames</h2>
-      <ul>
-        {characterDetails.nicknames.map((nickname, index) => (
-          <li key={index}>{nickname}</li>
-        ))}
-      </ul>
+      <img
+        src={characterDetails.images.jpg.image_url}
+        alt={characterDetails.name}
+        style={{ width: "300px", marginRight: "10px" }}
+      />
 
       <h2>About</h2>
-      <p>{characterDetails.about}</p>
+      <p style={{ textAlign: "left" }}>{characterDetails.about}</p>
 
-      {/* Add more details as needed */}
+      {}
     </div>
   );
 };

@@ -14,6 +14,16 @@ export const account = async () => {
     const response = await request.post(`${USERS_API}/account`);
     return response.data;
   };
+
+  export const getAnimes = async () => {
+    const response = await request.get(`${BASE_API}/api/anime`);
+    return response.data;
+  };
+
+  export const getReviews = async () => {
+    const response = await request.get(`${BASE_API}/api/reviews`);
+    return response.data;
+  };
   export const updateUser = async (user) => {
     const response = await request.put(`${USERS_API}/${user._id}`, user);
     return response.data;
@@ -69,7 +79,3 @@ export const account = async () => {
       return response.data;
     };
     
-  export const deleteReview = async (reviewId) => {
-    const response = await request.delete(`${BASE_API}/api/users/reviews/${reviewId}`)
-    return response.data
-  }

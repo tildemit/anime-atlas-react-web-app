@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as client from "./client";
+import { Link } from "react-router-dom";
+import "./sign.css";
 
 function Signup() {
   const [error, setError] = useState("");
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
-    role: "BASIC", // Set a default role, e.g., BASIC
+    role: "BASIC",
   });
   const navigate = useNavigate();
 
@@ -18,33 +20,42 @@ function Signup() {
     } catch (err) {
       setError(err.response.data.message);
 
-      // Reset the text fields on error
       setCredentials({
         username: "",
         password: "",
-        role: "BASIC", // Reset role to the default value
+        role: "BASIC",
       });
     }
   };
 
   return (
-    <div>
+    <div className="container">
+      <div className="top-bar">
+        <Link to="/" className="nav-link">
+          Home
+        </Link>
+        <Link to="/search" className="nav-link">
+          Search
+        </Link>
+        <Link to="/signin" className="nav-link">
+          Signin
+        </Link>
+      </div>
       <h1>Signup</h1>
       {error && <div>{error}</div>}
+      <label>Username</label>
       <input
         value={credentials.username}
         onChange={(e) =>
           setCredentials({ ...credentials, username: e.target.value })
         }
-        placeholder="Username"
       />
+      <label>Password</label>
       <input
         value={credentials.password}
         onChange={(e) =>
           setCredentials({ ...credentials, password: e.target.value })
         }
-        type="password"
-        placeholder="Password"
       />
       <select
         value={credentials.role}

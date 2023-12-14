@@ -1,60 +1,74 @@
-/* Search.css */
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-  
-  form {
-    display: flex;
-    margin-bottom: 16px;
-  }
-  
-  label {
-    flex: 1;
-    margin-right: 8px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-  }
-  
-  button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+label {
+  flex: 1;
+  margin-right: 8px;
+}
+
+input {
+  width: calc(100% - 16px); 
+  padding: 8px;
+  margin-right: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+li {
+  width: calc(33.333% - 16px);
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 600px) {
   li {
-    margin-right: 16px;
-    margin-bottom: 16px;
-    flex: 1 1 calc(33.333% - 16px); /* Adjust based on the desired number of items per row */
+    width: 100%;
+    margin-right: 0;
   }
-  
-  img {
-    width: 50%;
-    height: 200px; /* Set the desired fixed height */
-    object-fit: contain; /* Maintain aspect ratio without cropping */
-    border-radius: 8px;
-  }
-  
+}
+
+.anime-title {
+  max-width: 300px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}

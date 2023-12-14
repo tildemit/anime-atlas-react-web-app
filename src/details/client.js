@@ -2,7 +2,6 @@ import axios from "axios";
 const request = axios.create({
   withCredentials: true,
 });
-// Jikan API-specific axios instance
 const jikanRequest = axios.create();
 
 export const BASE_API = process.env.REACT_APP_BASE_API_URL;
@@ -89,3 +88,8 @@ export const account = async () => {
     const response = await request.post(`${USERS_API}/reviews`, review)
     return response.data;
   };
+
+  export const deleteReview = async (reviewId) => {
+    const response = await request.delete(`${BASE_API}/api/users/reviews/${reviewId}`)
+    return response.data
+  }

@@ -1,79 +1,122 @@
-/* account.css */
-
-.account-container {
-    display: flex;
+.account-details {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.profile-section,
-.liked-anime-section,
+.profile-section {
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.profile-input {
+  margin-bottom: 15px;
+}
+
+.profile-input label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-input input,
+.profile-input select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.save-button,
+.sign-out-button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.users-link {
+  display: block;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
 .user-reviews-section,
 .following-section,
-.followers-section {
-    margin-right: 20px;
+.followers-section,
+.liked-characters-section {
+  margin-top: 20px;
 }
 
-.w-50 {
-    max-width: 500px;
-    margin: 0 auto;
+.liked-anime-section {
+  margin-top: 20px;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.liked-anime-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  gap: 20px;
 }
 
-/* Input fields */
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+.liked-anime-card {
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Save button */
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
+.liked-anime-card:hover {
+  transform: scale(1.05);
 }
 
-/* Users link */
-.btn-warning {
-    background-color: #ffc107;
-    color: #000;
-    padding: 10px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    margin-top: 20px;
+.liked-anime-card img {
+  width: 100%;
+  height: auto;
+  margin-right: 10px;
 }
 
-/* User reviews section */
-h2 {
-    font-size: 20px;
-    margin-top: 30px;
+@media screen and (max-width: 768px) {
+  .liked-anime-cards {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+.top-bar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-li {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.3s ease-in-out;
 }
 
-/* Force the images to be larger */
-img {
-    width: 100%; /* Adjust as needed */
-    height: auto;
-    margin-right: 10px;
-}
-
-/* Following and Followers section */
-.following-section h2,
-.followers-section h2 {
-    margin-top: 0;
+.nav-link:hover {
+  color: #ccc;
 }

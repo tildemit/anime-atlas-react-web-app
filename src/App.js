@@ -9,12 +9,12 @@ import UserTable from './users/table';
 import PublicUser from './users/publicuser';
 import Signup from './users/signup';
 import CharacterDetails from './details/CharacterDetails';
-import {HashRouter} from "react-router-dom";
-import {Routes, Route} from "react-router";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {Routes} from "react-router";
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -28,7 +28,7 @@ function App() {
           <Route path="/characterdetails/:characterId" element={<CharacterDetails />} />
         </Routes>
       </div>
-    </HashRouter>
+    </Router>
   );
 }
 

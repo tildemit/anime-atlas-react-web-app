@@ -1,0 +1,74 @@
+.account-container {
+    padding: 20px;
+  }
+
+  .profile-section,
+  .user-reviews-section,
+  .following-section,
+  .followers-section,
+  .liked-characters-section {
+    margin-top: 20px;
+  }
+
+  .liked-anime-section {
+    margin-top: 20px;
+  }
+
+  .liked-anime-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    gap: 20px;
+  }
+
+  .liked-anime-card {
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .liked-anime-card:hover {
+    transform: scale(1.05);
+  }
+
+  .liked-anime-card img {
+    width: 100%;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .liked-anime-cards {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+  }
+
+.public-user-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .profile-section {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .profile-field {
+    margin-bottom: 10px;
+  }
+
+  .profile-field span {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .public-user-reviews-section p {
+    max-width: 400px;
+    margin-top: 10px;
+  }
